@@ -21,13 +21,13 @@ class UserSerializer(serializers.ModelSerializer):
       #'User' instance one at a time.
       setattr(instance, key, value)
       
-      if password is not None:
-        # '.set_password()' handles all
-        # of the security stuff we shouldnt be concerned with
-        instance.set_password(password)
-        #After everything has been updated we must explicitly save the model
-        #'.set_password()' deosnt save the model
-      instance.save()
-      return instance
+    if password is not None:
+      # '.set_password()' handles all
+      # of the security stuff we shouldnt be concerned with
+      instance.set_password(password)
+    #After everything has been updated we must explicitly save the model
+    #'.set_password()' deosnt save the model
+    instance.save()
+    return instance
     
   
