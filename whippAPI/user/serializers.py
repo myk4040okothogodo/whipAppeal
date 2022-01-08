@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.set_password(password)
         #After everything has been updated we must explicitly save the model
         #'.set_password()' deosnt save the model
-        instance.save()
-        return instance
+      instance.save()
+      return instance
     
   
