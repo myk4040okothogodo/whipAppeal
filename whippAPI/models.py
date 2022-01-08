@@ -19,4 +19,6 @@ class Account(models.Model):
     if curr < 20:
       return False
     return True  
+#should create a profile model that has a one to many relationship with accounts model and 
+#one to one relationship with the User model
   
