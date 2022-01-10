@@ -16,13 +16,14 @@ class UserSerializer(serializers.ModelSerializer):
       kwargs={User.USERNAME_FIELD: username}, request=request),
       }  
   
+  """
   def update(self, instance, validated_data):
-    """ Performs an update on a User."""
-    """
+    Performs an update on a User.
+    
     passwords shouldnt be handled with 'setattr', unlike other fields,Django provides
     a function that handles hashing and salting of passwords.That means we need to remove
     the password field from validated data before iterating over it.
-    """
+    
     password = validated_data.pop('password', None)
     for (key, value) in validated_data.items():
       #for the keys remaining in 'validated_data', we will set them on the current current
@@ -37,5 +38,5 @@ class UserSerializer(serializers.ModelSerializer):
     #'.set_password()' deosnt save the model
     instance.save()
     return instance
-    
+  """
   
