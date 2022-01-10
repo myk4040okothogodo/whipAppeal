@@ -10,7 +10,7 @@ class Account(models.Model):
   owner = models.ForeignKey( settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   renewal_date = models.DateTimeField(null=False)
   account_balance = MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
-  
+  #should have used @property decorator in the two below
   def is_active(self):
     if  (datetime.datetime.now - datetime.datetime(renewal_date)) < 30*3600:
       return True     
