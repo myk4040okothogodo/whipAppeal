@@ -1,12 +1,20 @@
 from whippAPI.user.models import User
 from rest_framework import serializers
 
-
 class UserSerializer(serializers.ModelSerializer):
+  links = serializers.SerializerMethodField('get_links')
   class Meta:
     model = User
-    fields = ['id', 'username','email', 'is_active', 'date_joined']
+    fields = ['id', 'username','email', 'is_active', 'date_joined','links',]
     read_only_field = ['is_active', 'date_joined']
+    
+  def get_links(self, obj):
+    request = self.context['request']
+    username = obj.get_username()
+    return {
+      'self': reverse('user-detail',
+      kwargs={User.USERNAME_FIELD: username}, request=request),
+      }  
   
   def update(self, instance, validated_data):
     """ Performs an update on a User."""
